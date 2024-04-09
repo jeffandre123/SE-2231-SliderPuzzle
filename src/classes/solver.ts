@@ -55,11 +55,12 @@ class Solver {
     return solution
   }
 
+
   private solve (): boolean {
-    const pq = new MinHeap<SearchNode>()
+    const pq = new MinHeap<SearchNode>([], {comparator: (a: SearchNode, b:SearchNode) => a.priority - b.priority})
     pq.add(this.initialSearchNode)
 
-    const twinPq = new MinHeap<SearchNode>()
+    const twinPq = new MinHeap<SearchNode>([], {comparator: (a: SearchNode, b:SearchNode) => a.priority - b.priority})
     const twinInitial = this.initialSearchNode.board.twin()
     twinPq.add(new SearchNode(twinInitial, 0, null))
 
